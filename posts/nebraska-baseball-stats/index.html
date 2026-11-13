@@ -28,6 +28,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -336,9 +371,87 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is a story of how Nebraska Baseball has improved in recent years.</p>
+<p>Nebraska Baseball has seen recent success under Head Coach Will Bolt. After struggling to find consistency and establish itself as a conference power, Nebraska baseball has seemed to figure itself out. With back to back conference tournament championships, and three straight regional appearances (1 hosted), we will look how the Nebraska baseball team has earned their success.</p>
+<section id="nebraska-pitching-in-recent-years" class="level1">
+<h1>Nebraska Pitching in Recent Years</h1>
+<p>Pitching is without a doubt the most important aspect of a baseball team as it dictates whether or not a team will succeed. Within pitching are two main stats that will determine the outcome of a game. A team’s earned run average. or ERA, tells us how many earned runs a team will give up, on average, in a 9 inning game. Along with ERA in determining the outcome of a game is WHIP or walks and hits per inning. This is an arguably more important stat as it shows how hittable a team is, and how many freebies they give up with walks.</p>
+<p>We will see the visualization of Nebraska’s ERA and WHIP from 2023-2026 where the success of its baseball team started to take off. If a team wants to start finding success, it must establish a dominant pitching rotation.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>nebraska <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"nebraska_baseball_2023_2026.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nebraska, <span class="fu">aes</span>(<span class="at">x =</span> WHIP, <span class="at">y =</span> ERA)) <span class="sc">+</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> year), <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">35</span>) <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Nebraska Baseball Pitching"</span>, <span class="at">subtitle =</span> <span class="st">"Comparing Nebraska Bsseball's ERA and WHIP from 2023-2026"</span>, <span class="at">x =</span> <span class="st">"WHIP"</span>, <span class="at">y =</span> <span class="st">"Earned Run Average (ERA)"</span>, <span class="at">caption =</span> <span class="st">"Source: Baseball-Reference.com"</span>) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see how Nebraska ERA and WHIP from 2023-2026 has changed, but not in a consistent way. Even though Nebraska has not grown consistently in recent years, the teams ERA and WHIP being similar throughout the years do show the start of consistency which is the first step in becoming a conference power.</p>
+</section>
+<section id="nebraska-getting-on-base" class="level1">
+<h1>Nebraska Getting On Base</h1>
+<p>On the offensive side of baseball, most people would say that batting average is what determines if a team has a good offense. While that definitely could correlate to that, I believe that a team that simply gets on base more often would contribute to having a better offense.</p>
+<p>Sure getting hits will generate more runs for a team but what truly extends innings and frustrates pitching is when teams constantly find a way to get on base. Getting on base allows teams to find opportunities to score, and increase their offensive production. We’ll see a visualization of Nebraska’s one base percentage (OBP) and how it can correlate to a more successful season.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="at">data =</span> nebraska, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">weight =</span> OBP), <span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Nebraska Baseball's On Base Percentage (2023-2026)"</span>, <span class="at">subtitle =</span> <span class="st">"Comparing the team's on base percentage by season"</span>, <span class="at">x =</span> <span class="st">"Season"</span>, <span class="at">y =</span> <span class="st">"On Base Percentage"</span>, <span class="at">caption =</span> <span class="st">"Source: Baseball-Reference.com"</span>) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Similar to the previous visualization, Nebraska’s OBP throughout those recent years have been very close to each other. This once again shows the consistency that Nebraska is showing, which is a good sign of starting to establish themselves as a conference power.</p>
+</section>
+<section id="stats-turning-into-wins" class="level1">
+<h1>Stats Turning into Wins</h1>
+<p>After looking at the pitching and OBP of Nebraska Baseball from 2023-2026, it’s easy to predict how each of those seasons turned out. After all, having a good pitching staff, and high production offense are the main keys to winning.</p>
+<p>We will look at a final visualization of the winning percentage from each of those seasons, and see if the previous visualizations correlate to the final season results.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nebraska, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> WPCT)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Nebraska Baseball's Winning Percentage (2023-2026)"</span>, <span class="at">subtitle =</span> <span class="st">"Tracking the program's performance over four seasons"</span>, <span class="at">x =</span> <span class="st">"Season"</span>, <span class="at">y =</span> <span class="st">"Winning Percentage"</span>, <span class="at">caption =</span> <span class="st">"Source: Baseball-Reference.com"</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see how all of these seasons turned out, and whether or not good pitching and productive offenses correlate to successful seasons. Our graphic shows how each season had a winning percentage above 50% and one season even jumping to nearly 72% showing how different seasons perform with their respective stats.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>When we break down each season’s stats compared to its winning percentage we can really see how those stats correlate to the season’s success. We can see how Nebraska’s 2025 season had both the worst pitching and offensive performances, which transitioned to the winning percentage being the lowest of the four seasons we looked at. On the other hand, the 2026 season had the highest OBP and a solid pitching performance which led to a nearly 72% winning percentage, and the best season of the four we looked at as Nebraska even hosted its own regional that year.</p>
+<p>What we have learned is that to be a successful baseball team, teams must limit earned runs, walk less batters, and find a way to get on base. While those factors may seem easy to accomplish, the growth of skill in baseball has made it quite the opposite.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
